@@ -61,18 +61,12 @@ app.route = function () {
   var params = $.deparam(window.location.search.substr(1));
 
   if (params.a) {
-    app.data.getStandardizedAddress(app.util.cleanPropertyQuery(params.a),
-      function(standardizedAddress) {
-        app.hooks.searchForm.find('input').val(app.util.toTitleCase(standardizedAddress));
-        app.data.getServiceAreas(standardizedAddress, function(serviceAreas) {
-          app.hooks.trashDay.text(app.util.abbrevToFullDay(serviceAreas.rubbish));
-        });
-      });
-  } else if (params.sa) {
-      app.data.getServiceAreas(app.util.cleanPropertyQuery(params.sa));
+    app.hooks.notices.text('Loading...');
+    app.data.getStandardizedAddress(app.util.cleanPropertyQuery(params.a));
   } else {
     app.hooks.searchForm.get(0).reset();
     app.hooks.trashDay.html('&nbsp;');
+    app.hooks.notices.empty();
   }
 };
 
@@ -91,7 +85,7 @@ if (!history.pushState) {
 
 app.data = {};
 
-app.data.getStandardizedAddress = function(address, callback) {
+app.data.getStandardizedAddress = function(address) {
 
   $.ajax('https://api.phila.gov/ulrs/v3/addresses/' + encodeURIComponent(address) + '?format=json',
     {dataType: app.settings.ajaxType})
@@ -99,16 +93,17 @@ app.data.getStandardizedAddress = function(address, callback) {
       var standardizedAddress;
       if (data.addresses.length > 0) {
         standardizedAddress = data.addresses[0].standardizedAddress;
+        app.data.getServiceAreas(standardizedAddress);
+      } else {
+        app.hooks.notices.text('No address was found.');
       }
-      callback(standardizedAddress);
     })
     .fail(function () {
-      console.log('getStandardizedAddress failed');
-      callback();
+      app.hooks.notices.text('No address was found.');
     });
 };
 
-app.data.getServiceAreas = function(standardizedAddress, callback) {
+app.data.getServiceAreas = function(standardizedAddress, success) {
 
   $.ajax('https://data.phila.gov/resource/bz79-67af.json?address_id=' + encodeURIComponent(standardizedAddress),
       {dataType: app.settings.ajaxType})
@@ -116,11 +111,15 @@ app.data.getServiceAreas = function(standardizedAddress, callback) {
       var serviceAreas = data.length > 0 ? data[0] : null;
 
       if (serviceAreas) {
-        callback(serviceAreas);
+        app.hooks.searchForm.find('input').val(app.util.toTitleCase(standardizedAddress));
+        app.hooks.notices.empty();
+        app.hooks.trashDay.text(app.util.abbrevToFullDay(serviceAreas.rubbish));
+      } else {
+        app.hooks.notices.text('The trash & recycling collection day was not found.');
       }
     })
     .fail(function () {
-      callback();
+      app.hooks.notices.text('The trash & recycling collection day was not found.');
     });
 };
 
