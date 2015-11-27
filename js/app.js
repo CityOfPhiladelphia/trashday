@@ -39,6 +39,15 @@ app.hooks.searchForm.on('submit', function (e) {
   }
 });
 
+app.hooks.searchForm.find('input').on('input', function (e) {
+  if (e.ctrlKey || e.altKey || e.shiftKey) return;
+  e.preventDefault();
+
+  if (!this.value) {
+    app.hooks.trashDay.html('&nbsp');
+  }
+});
+
 // global settings
 app.settings = {
   ajaxType: $.support.cors ? 'json' : 'jsonp'
