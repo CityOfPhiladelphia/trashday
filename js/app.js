@@ -114,7 +114,12 @@ app.data.getServiceAreas = function(standardizedAddress, success) {
       if (serviceAreas) {
         app.hooks.searchForm.find('input').val(titleCaseAddress);
         app.hooks.notices.empty();
+
         app.hooks.trashDay.text(app.util.abbrevToFullDay(serviceAreas.rubbish));
+        app.hooks.address.text(titleCaseAddress);
+        app.hooks.propertyLink.attr('href', 'https://alpha.phila.gov/property/?a=' +
+          encodeURIComponent(standardizedAddress) + '&u=');
+
         app.hooks.results.removeClass('hide');
       } else {
         app.hooks.notices.text('The trash & recycling collection day was not found.');
