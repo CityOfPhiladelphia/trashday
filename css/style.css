@@ -5,9 +5,9 @@ body {
 }
 
 .trash-day {
-  font-size: 4rem;
-  margin: 0;
+  font-size: 3rem;
   font-weight: 600;
+  margin: 0;
 }
 
 .search-form-container {
@@ -16,9 +16,4 @@ body {
 
 .search input[type="text"] {
   border-width: 1px 0px 1px 1px;
-}
-
-.intro {
-  font-size:1.3rem;
-  text-align:center;
 }

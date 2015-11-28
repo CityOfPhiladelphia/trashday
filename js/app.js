@@ -34,7 +34,7 @@ app.hooks.searchForm.on('submit', function (e) {
     $(this).find('input').blur();
     history.pushState(null, params, '?' + queryStringParams);
     window.scroll(0, 0);
-    app.hooks.trashDay.html('&nbsp');
+    app.hooks.results.addClass('hide');
     app.route();
   }
 });
@@ -44,7 +44,7 @@ app.hooks.searchForm.find('input').on('input', function (e) {
   e.preventDefault();
 
   if (!this.value) {
-    app.hooks.trashDay.html('&nbsp');
+    app.hooks.results.addClass('hide');
   }
 });
 
@@ -65,7 +65,7 @@ app.route = function () {
     app.data.getStandardizedAddress(app.util.cleanPropertyQuery(params.a));
   } else {
     app.hooks.searchForm.get(0).reset();
-    app.hooks.trashDay.html('&nbsp;');
+    app.hooks.results.addClass('hide');
     app.hooks.notices.empty();
   }
 };
@@ -109,11 +109,13 @@ app.data.getServiceAreas = function(standardizedAddress, success) {
       {dataType: app.settings.ajaxType})
     .done(function (data) {
       var serviceAreas = data.length > 0 ? data[0] : null;
+      var titleCaseAddress = app.util.toTitleCase(standardizedAddress);
 
       if (serviceAreas) {
-        app.hooks.searchForm.find('input').val(app.util.toTitleCase(standardizedAddress));
+        app.hooks.searchForm.find('input').val(titleCaseAddress);
         app.hooks.notices.empty();
         app.hooks.trashDay.text(app.util.abbrevToFullDay(serviceAreas.rubbish));
+        app.hooks.results.removeClass('hide');
       } else {
         app.hooks.notices.text('The trash & recycling collection day was not found.');
       }
@@ -140,13 +142,13 @@ app.util.cleanPropertyQuery = function(query) {
 
 app.util.abbrevToFullDay = function(abbrev) {
   switch(abbrev) {
-    case 'SUN': return 'Sunday';
-    case 'MON': return 'Monday';
-    case 'TUE': return 'Tuesday';
-    case 'WED': return 'Wednesday';
-    case 'THU': return 'Thursday';
-    case 'FRI': return 'Friday';
-    case 'SAT': return 'Saturday';
+    case 'SUN': return 'Sundays';
+    case 'MON': return 'Mondays';
+    case 'TUE': return 'Tuesdays';
+    case 'WED': return 'Wednesdays';
+    case 'THU': return 'Thursdays';
+    case 'FRI': return 'Fridays';
+    case 'SAT': return 'Saturdays';
   }
 
   return abbrev;
