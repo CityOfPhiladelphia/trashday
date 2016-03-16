@@ -27,8 +27,8 @@ app.hooks.searchForm.on('submit', function (e) {
   if (e.ctrlKey || e.altKey || e.shiftKey) return;
   e.preventDefault();
 
-  var params = $(this).serializeObject(),
-      queryStringParams = $(this).serialize();
+  var params = app.util.serializeObject(this),
+      queryStringParams = app.util.serializeQueryStringParams(params);
 
   if (params) {
     $(this).find('input').blur();
@@ -141,8 +141,12 @@ app.util.toTitleCase = function(str) {
 };
 
 app.util.cleanPropertyQuery = function(query) {
-  // Trim, remove extra spaces, and replace dots and hashes -- API can't handle them
-  return query.trim().replace(/\./g, ' ').replace(/ {2,}/g, ' ').replace(/#/g, '');
+  if (!query) {
+    return '';
+  }
+
+  // Trim, remove extra speces, and replace dots and hashes -- API can't handle them
+  return query.replace(/\./g, ' ').replace(/ {2,}/g, ' ').replace(/#/g, '').trim().toUpperCase();
 };
 
 app.util.abbrevToFullDay = function(abbrev) {
@@ -158,3 +162,26 @@ app.util.abbrevToFullDay = function(abbrev) {
 
   return abbrev;
 };
+
+// Serialize a form into an object, assuming only one level of depth
+app.util.serializeObject = function (form) {
+  var obj = {};
+  $.each($(form).serializeArray(), function (i, element) {
+      if (!obj[element.name]) {
+        obj[element.name] = element.value;
+      }
+    });
+  return obj;
+};
+
+// Serialize an object to query string params
+app.util.serializeQueryStringParams = function(obj) {
+  var str = [];
+  for(var p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+    }
+  }
+  return str.join('&');
+};
+

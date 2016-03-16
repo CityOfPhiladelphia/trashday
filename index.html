@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="//cityofphiladelphia.github.io/patterns/dist/0.12.5/css/patterns.css">
+    <link rel="stylesheet" href="//cityofphiladelphia.github.io/patterns/dist/1.1.5/css/patterns.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
   </head>
@@ -37,16 +37,14 @@
       '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-MC6CR2');</script>
     <!-- End Google Tag Manager -->
-    <div id="application" class="site">
+
+    <div id="application" class="page">
       <div data-swiftype-index="false" id="alpha-alert">
         <div class="row">
-          <div class="large-15 columns">
-            <p>This service is in <a href="http://alpha.phila.gov/about/">Alpha</a>: it is a work in progress and may contain errors or inaccuracies.</p>
-            <a class="go-back small-text" href="http://www.phila.gov" target="_blank">
-              <i class="fa fa-reply"></i> Take me back to Phila.gov<span class="accessible"> Opens in new window</span></a>
+          <div class="large-18 columns">
+            <p>We're piloting a new, user-friendly website design. To view the existing City website, visit <a class="external" href="http://phila.gov" target="_blank">phila.gov<span class="accessible"> Opens in new window</span></a>.
           </div>
-          <div class="large-9 columns contact">
-            <i class="fa fa-comments"></i> <a class="feedback" href="https://docs.google.com/forms/d/1KNMzq52m14eROSbisox94Hospk7JtxMbDQDJxfQGSHk/viewform?entry.526820711=alpha.phila.gov/trash-recycling-collection-day/" target="_blank">Provide Feedback<span class="accessible"> Opens in new window</span></a>
+          <div class="large-6 columns accessibility">
             <i class="fa fa-globe"></i><div id="google_translate_element"></div>
               <script type="text/javascript">
                 function googleTranslateElementInit() {
@@ -58,29 +56,34 @@
         </div>
       </div>
 
-      <header data-swiftype-index='false' class="site-header" role="banner">
+      <header data-swiftype-index="false" id="masthead" class="site-header app" role="banner">
         <div class="row site-branding">
-          <div class="small-24 medium-12 columns">
-            <a href="//alpha.phila.gov"><img src="//cityofphiladelphia.github.io/patterns/images/city-of-philadelphia-logo.png" class="logo" alt="City of Philadelphia"></a>
+          <div class="small-24 columns">
+            <a href="http://alpha.phila.gov/" class="logo">
+              <img data-interchange="[//cityofphiladelphia.github.io/patterns/images/city-of-philadelphia-mobile.png, small], [//cityofphiladelphia.github.io/patterns/images/city-of-philadelphia-white.png, medium] ">
+            </a>
+            <div class="page-title-container">
+              <h1 data-hook="app-title" class="page-title">Trash &amp; Recycling Collection Day</h1>
+            </div>
+          </div>
 
-            <h1 class="site-title">phila.gov</h1>
-            <h2 class="site-description">City of Philadelphia</h2>
+          <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+        </div>
+        <div class="row expanded">
+          <div class="columns">
+            <div class="row">
+              <div data-swiftype-index="false" class="large-24 columns">
+                <nav>
+                  <ul data-hook="crumbs" class="breadcrumbs">
+                    <li><a href="/">alpha.phila.gov</a></li>
+                    <li>Trash &amp; Recycling Collection Day</li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
           </div>
         </div>
       </header>
-      <div class="row">
-        <div class="small-24 columns">
-          <div class="divider"></div>
-        </div>
-      </div>
-      <div data-swiftype-index='false' class="row">
-        <div id="breadcrumbs" class="large-24 columns">
-          <ul data-hook="crumbs" class="inline-list">
-            <li><a href="http://alpha.phila.gov">alpha.phila.gov</a></li>
-            <li>Trash &amp; Recycling Collection Day</li>
-          </ul>
-        </div>
-      </div>
 
       <div class="row">
         <div class="large-24 columns">
@@ -121,6 +124,12 @@
     </div>
 
     <!-- Begin Footer -->
+    <div class="row feedback">
+      <div class="small-24 columns">
+        <div class="panel center mbl"><p>We're still working on this page's design and content. <a href="http://alpha.phila.gov/feedback/">How can we make it better?</a></p></div>
+      </div>
+    </div>
+
     <footer data-swiftype-index='false' class="site-footer" role="contentinfo">
       <section class="fat">
         <div class="row">
@@ -155,11 +164,8 @@
           </div>
         </div>
       </section>
-      <div class="row classic">
-        <div class="large-6 columns">
-          <a href="https://docs.google.com/forms/d/1KNMzq52m14eROSbisox94Hospk7JtxMbDQDJxfQGSHk/viewform?entry.526820711=alpha.phila.gov/trash-recycling-collection-day/">Feedback</a>
-        </div>
-        <div class="large-12 columns">
+      <div class="row classic center">
+        <div class="columns">
           <nav>
             <ul class="inline-list">
               <li><a href="http://alpha.phila.gov/terms-of-use">Terms of use</a></li>
@@ -170,15 +176,17 @@
         </div>
       </div>
     </footer>
+    <!-- End Footer -->
 
-    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
-    <script src="//cityofphiladelphia.github.io/patterns/dist/0.12.5/js/patterns.min.js"></script>
+    <!--[if !IE 8]><!-->
+    <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.js"></script>
+    <script src="//cityofphiladelphia.github.io/patterns/dist/1.1.5/js/patterns.min.js"></script>
     <script src="js/deparam.js"></script>
-    <script src="js/jquery.serializeObject.js"></script>
     <script src="js/app.js"></script>
     <script>
       $(document).foundation();
     </script>
+    <!--<![endif]-->
   </body>
 </html>
