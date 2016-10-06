@@ -87,13 +87,13 @@ app.data = {};
 
 app.data.getStandardizedAddress = function(address) {
 
-  $.ajax('https://api.phila.gov/ulrs/v3/addresses/' + encodeURIComponent(address) + '?format=json',
+  $.ajax('https://api.phila.gov/ais/v1/addresses/' + encodeURIComponent(address),
     {dataType: app.settings.ajaxType})
     .done(function (data) {
-      var standardizedAddress;
-      if (data.addresses.length > 0) {
-        standardizedAddress = data.addresses[0].standardizedAddress;
-        app.data.getServiceAreas(standardizedAddress);
+      var addressInfo;
+      if (data.features && data.features.length > 0) {
+        addressInfo = data.features[0].properties;
+        app.data.renderAddressInfo(addressInfo);
       } else {
         app.hooks.notices.text('No address was found.');
       }
@@ -103,31 +103,19 @@ app.data.getStandardizedAddress = function(address) {
     });
 };
 
-app.data.getServiceAreas = function(standardizedAddress, success) {
+app.data.renderAddressInfo = function(addressInfo) {
+  var titleCaseAddress = app.util.toTitleCase(addressInfo.street_address);
+  var fullRubbishDay = app.util.abbrevToFullDay(addressInfo.rubbish_recycle_day);
 
-  $.ajax('https://data.phila.gov/resource/bz79-67af.json?address_id=' + encodeURIComponent(standardizedAddress),
-      {dataType: app.settings.ajaxType})
-    .done(function (data) {
-      var serviceAreas = data.length > 0 ? data[0] : null;
-      var titleCaseAddress = app.util.toTitleCase(standardizedAddress);
+  app.hooks.searchForm.find('input').val(titleCaseAddress);
+  app.hooks.notices.empty();
 
-      if (serviceAreas) {
-        app.hooks.searchForm.find('input').val(titleCaseAddress);
-        app.hooks.notices.empty();
+  app.hooks.trashDay.text(fullRubbishDay);
+  app.hooks.address.text(titleCaseAddress);
+  app.hooks.propertyLink.attr('href', 'https://alpha.phila.gov/property/?a=' +
+    encodeURIComponent(addressInfo.street_address) + '&u=');
 
-        app.hooks.trashDay.text(app.util.abbrevToFullDay(serviceAreas.rubbish));
-        app.hooks.address.text(titleCaseAddress);
-        app.hooks.propertyLink.attr('href', 'https://alpha.phila.gov/property/?a=' +
-          encodeURIComponent(standardizedAddress) + '&u=');
-
-        app.hooks.results.removeClass('hide');
-      } else {
-        app.hooks.notices.text('The trash & recycling collection day was not found.');
-      }
-    })
-    .fail(function () {
-      app.hooks.notices.text('The trash & recycling collection day was not found.');
-    });
+  app.hooks.results.removeClass('hide');
 };
 
 
