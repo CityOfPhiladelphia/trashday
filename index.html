@@ -95,14 +95,15 @@
         <div data-hook="search-box" class="search-box entry-content small-24 medium-17 columns">
           <p>When is trash and recycling scheduled to be picked up for this address?</p>
 
-          <div class="search">
-            <div class="search-form-container">
-              <!-- Address -->
-              <form data-hook="search-form" class="search-form-option">
+          <div class="search-form-container">
+            <!-- Address -->
+            <form data-hook="search-form" class="search-form-option">
+              <label for="a" class="show-for-sr">Search by address:</label>
+              <div class="search">
                 <input type="text" data-hook="search-address" name="a" placeholder="Enter an address...">
                 <input type="submit">
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
           <p data-hook="notices" class="small-text">&nbsp;</p>
           <div data-hook="results" class="hide">
