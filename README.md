@@ -4,7 +4,12 @@
 
 A micro-service to tell you your trash and recycling collection day for the City of Philadelphia.
 
-Source APIs:
+Current Source API:
+
+- https://api.phila.gov/ais/v1/
+
+Original Source APIs:
+
 - http://api.phila.gov/ulrs/v3/
     - http://api.phila.gov/ulrs/v3/addresses/1234%20market?format=json
       Send rawAddress and get results with standardizedAddress as key for other calls.
