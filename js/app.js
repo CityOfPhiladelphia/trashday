@@ -88,7 +88,8 @@ app.data = {};
 app.data.getStandardizedAddress = function(address) {
 
   $.ajax('https://api.phila.gov/ais/v1/addresses/' + encodeURIComponent(address),
-    {dataType: app.settings.ajaxType})
+    {data: {gatekeeperKey: '12070257c23a728f3c09f1d0d6c7d53b'},
+     dataType: app.settings.ajaxType})
     .done(function (data) {
       var addressInfo;
       if (data.features && data.features.length > 0) {
