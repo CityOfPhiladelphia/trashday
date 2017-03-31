@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Trash & recycling collection day | phila.gov</title>
-  <link rel="icon" type="image/x-icon" href="/assets/phila-standards-0.3.7/img/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/assets/phila-standards-0.4.2/img/favicon.ico">
   <meta name="description" content="Find trash and recycling collection days for addresses within the City of Philadelphia.">
 
   <!-- Swiftype Meta Tags -->
@@ -21,7 +21,7 @@
   <meta name="twitter:site" content="@PhiladelphiaGov" />
   <meta name="twitter:creator" content="@PhiladelphiaGov" />
 
-  <link rel="stylesheet" href="/assets/phila-standards-0.3.7/css/phila-standards.css">
+  <link rel="stylesheet" href="/assets/phila-standards-0.4.2/css/phila-standards.css">
 </head>
 
 <body lang="en">
@@ -103,7 +103,7 @@
           <div class="small-16 medium-6 columns equal valign small-push-4 medium-push-0">
             <div class="valign-cell">
               <a href="https://beta.phila.gov" class="logo" tabindex="1" aria-label="City of Philadelphia">
-                <img src="/assets/phila-standards-0.3.7/img/logo/city-of-philadelphia.svg" data-fallback="/assets/phila-standards-0.3.7/img/logo/city-of-philadelphia.png" alt="City of Philadelphia">
+                <img src="/assets/phila-standards-0.4.2/img/logo/city-of-philadelphia.svg" data-fallback="/assets/phila-standards-0.4.2/img/logo/city-of-philadelphia.png" alt="City of Philadelphia">
               </a>
             </div>
         </div>
@@ -171,13 +171,13 @@
                   <div class="mtm center">
                     <p>When is trash and recycling scheduled to be picked up for this address?</p>
                   </div>
-                  <div class="search">
                     <form data-hook="search-form" class="search-form-option">
                       <label for="search-address" class="show-for-sr">Search by address:</label>
+                      <div class="search">
                         <input id="search-address" type="text" data-hook="search-address" name="a" placeholder="Enter address" class="search-field">
                         <input type="submit" value="submit" class="search-submit">
+                      </div>
                     </form>
-                  </div>
                   <p data-hook="notices" class="small-text">&nbsp;</p>
                   <div data-hook="results" class="hide">
                     <p class="h3 trash-day" data-hook="trash-day">&nbsp;</p>
@@ -567,12 +567,14 @@
   <div class="dropdown-pane site-search-dropdown" data-dropdown data-v-offset="0" data-hover-pane="true" data-trap-focus="true" data-close-on-click="true" data-auto-focus="true" id="search-dropdown">
     <div class="row columns expanded bg-ghost-gray">
       <div class="row arrow">
-        <div class="medium-12 columns small-centered">
+        <div class="medium-16 columns small-centered">
           <div class="paxl">
-            <form role="search" method="get" class="search" id="search-form" action="https://beta.phila.gov/search">
+            <form role="search" method="get" id="search-form" action="https://beta.phila.gov/search">
               <label for="search-field"><span class="screen-reader-text">Search form</span></label>
+              <div class="search">
                 <input type="text" class="search-field" placeholder="Search" value="" name="s" title="Search" id="search-field">
                 <input type="submit" class="search-submit" value="submit">
+              </div>
             </form>
           </div>
         </div>
@@ -580,8 +582,7 @@
     </div>
   </div>
 </div>
-<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
-<script src="/assets/phila-standards-0.3.7/js/phila-standards.min.js"></script>
+<script src="/assets/phila-standards-0.4.2/js/phila-standards.min.js"></script>
 <script src="js/deparam.js"></script>
 <script src="js/app.js"></script>
 <script>$(document).foundation();</script>
