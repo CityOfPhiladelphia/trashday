@@ -113,7 +113,7 @@ app.data.renderAddressInfo = function(addressInfo) {
 
   app.hooks.trashDay.text(fullRubbishDay);
   app.hooks.address.text(titleCaseAddress);
-  app.hooks.propertyLink.attr('href', 'https://alpha.phila.gov/property/?a=' +
+  app.hooks.propertyLink.attr('href', 'https://property.phila.gov/?a=' +
     encodeURIComponent(addressInfo.street_address) + '&u=');
 
   app.hooks.results.removeClass('hide');
@@ -173,4 +173,3 @@ app.util.serializeQueryStringParams = function(obj) {
   }
   return str.join('&');
 };
-
